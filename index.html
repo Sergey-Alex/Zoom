@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+  .image {
+      width: 600px;
+      height: 300px;
+      background-image: url("https://cdn.pixabay.com/photo/2018/02/07/17/53/poppy-3137588_960_720.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      margin: auto;
+
+
+  }
+</style>
+<body>
+<div class=start">
+    <div class="image"></div>
+</div>
+<script>
+    let img = document.querySelector('.image');
+    img.addEventListener('mouseenter',function (event) {
+        this.style.backgroundSize = '400%';
+
+    })
+    img.addEventListener('mousemove', function (event) {
+        let pos = this.getBoundingClientRect();
+        let x = event.clientX - pos.left;
+        let y = event.clientY - pos.top;
+
+        let xPerc = Math.round(100/(pos.width/x));
+        let yPerc = Math.round(100/(pos.width/y));
+
+        this.style.backgroundPosition = xPerc + '%' + yPerc + '%'
+    })
+
+    img.addEventListener('mouseleave', function (event) {
+        this.style.backgroundPosition = 'center';
+        this.style.backgroundSize = 'cover';
+    })
+
+</script>
+</body>
+</html>
